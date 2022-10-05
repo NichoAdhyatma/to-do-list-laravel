@@ -4,7 +4,7 @@
         <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-lg font-bold" id="title">Form Add Student</h3>
         <p class="py-4">
-        <form id="form" action="/mahasiswa" class="flex flex-col gap-4" method="post">
+        <form id="form" action="{{ route('mahasiswa.store') }}" class="flex flex-col gap-4" method="post">
             @csrf
             <input type="text" name="nrp" class="input input-bordered w-full" placeholder="NRP">
             <input type="text" name="nama" class="input input-bordered w-full" placeholder="Nama">

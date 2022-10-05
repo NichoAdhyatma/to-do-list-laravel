@@ -8,6 +8,13 @@
                     data-feather="user-plus"></i>Add Student</label>
         </div>
 
+        <select class="select select-bordered w-full max-w-md">
+            <option selected>List Student</option>
+            @foreach ($mahasiswa as $m)
+                <option>{{ $m->nrp }} - {{ $m->nama }}</option>
+            @endforeach
+        </select>
+
 
         @if (session()->has('message'))
             @include('components.success')
@@ -53,7 +60,7 @@
                                 <label for="my-modal-3" onClick="setData({{ $t->id }})" data-mahasiswa_id="1"
                                     data-todo="Testing" class="badge bg-warning cursor-pointer text-white border-0 p-4">
                                     <i data-feather="edit"></i></label>
-                                <form action="/Todo/{{ $t->id }}" method="post"
+                                <form action="{{ route('Todo.destroy', $t->id) }}" method="post"
                                     onclick="return confirm('Ingin di hapus?')">
                                     @csrf
                                     @method('delete')
@@ -77,9 +84,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         function setData(id) {
-            $.get(`/Todo/${id}/edit`, function(data) {
-                $(`#mhs_id option[value=${data[0].mahasiswa_id}]`).prop('selected', 'selected');
-                $(`#form`).prop('action', `/Todo/${id}`)
+            $('#form-edit').hide()
+            $('#loader').show()
+            $.get(`/Todo/${id}/edit`, (data) => {
+                $(`#mhs_id option[value=${data[0].mahasiswa_id}]`).prop('selected', true);
+                $(`#form-edit`).prop('action', `/Todo/${id}`)
                 $('#todo').val(data[0].todo)
                 $('#keterangan').val(data[0].keterangan)
                 if (data[0].is_active == true) {
@@ -88,6 +97,9 @@
 
                     $('#done').prop('checked', true)
                 }
+            }).then(() =>{ 
+                $('#form-edit').show()
+                $('#loader').hide()
             })
         }
 
