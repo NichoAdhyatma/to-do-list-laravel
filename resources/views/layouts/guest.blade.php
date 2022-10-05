@@ -12,9 +12,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://unpkg.com/feather-icons"></script>
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body data-theme="dark">
+        @include('components.navbar')
+        <div class="font-sans antialiased min-h-screen">
             {{ $slot }}
         </div>
     </body>
