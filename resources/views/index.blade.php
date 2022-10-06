@@ -29,6 +29,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>NRP</th>
                         <th>Nama</th>
                         <th>Todo</th>
                         <th>Keterangan</th>
@@ -42,6 +43,7 @@
                         <tr class="hover">
 
                             <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $t->mahasiswa->nrp }}</td>
                             <td>{{ $t->mahasiswa->nama }}</td>
                             <td>{{ $t->todo }}</td>
                             <td>{{ $t->keterangan }}</td>

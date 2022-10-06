@@ -9,7 +9,7 @@
             <select name="mahasiswa_id"
                 class="select select-bordered w-full ">
                 @foreach ($mahasiswa as $m)
-                    <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                    <option value="{{ $m->id }}">{{ $m->nrp }} - {{ $m->nama }}</option>
                 @endforeach
             </select>
             <input type="text" name="todo"
